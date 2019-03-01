@@ -1,0 +1,21 @@
+name: notification_permisions
+description: A plugin to check and ask for notification permissions
+version: 0.1.0
+author: Gonçalo Palma
+homepage: https://github.com/Vanethos/
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: com.vanethos.notification_permisions
+    pluginClass: NotificationPermisionsPlugin
