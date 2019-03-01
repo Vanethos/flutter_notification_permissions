@@ -36,7 +36,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      print("The app has resumed");
       setState(() {
         permissionStatusFuture = getCheckNotificationPermStatus();
       });
@@ -46,8 +45,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   /// Checks the notification permission status
   Future<String> getCheckNotificationPermStatus() {
     return permissionManager.getNotificationPermissionStatus().then((status) {
-      print(status);
-      print(status.index);
       switch (status) {
         case PermissionStatus.denied:
           return permDenied;
@@ -72,7 +69,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           child: FutureBuilder(
               future: permissionStatusFuture,
               builder: (context, snapshot) {
-                print("We are inside the future");
                 // if we are waiting for data, show a progress indicator
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return CircularProgressIndicator();

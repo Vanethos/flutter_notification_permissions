@@ -4,13 +4,13 @@ Package to check for and ask for Notification Permissions on iOS and Android.
 To use this package, you first must create an instance of `NotificationPermissions`:
 
 ```dart
-var permissionManager = new NotificationPermissions
-();
+var permissionManager = new NotificationPermissions();
 ```
 
 ## Checking Notification Permission Status
 ```dart
-Future<PermissionStatus> permissionStatus = permissionManager.getNotificationPermissionStatus()
+Future<PermissionStatus> permissionStatus =
+    permissionManager.getNotificationPermissionStatus()
 ```
 
 This method will return an enum with the following values:
