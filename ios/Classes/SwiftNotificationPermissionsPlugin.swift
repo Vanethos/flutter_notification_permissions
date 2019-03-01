@@ -1,14 +1,14 @@
 import Flutter
 import UIKit
 
-public class SwiftNotificationPermisionsPlugin: NSObject, FlutterPlugin {
+public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
   var permissionGranted:String = "granted"
   var permissionUnknown:String = "unknown"
   var permissionDenied:String = "denied"
 
   public static func register(with registrar: FlutterPluginRegistrar) {
       let channel = FlutterMethodChannel(name: "notification_permissions", binaryMessenger: registrar.messenger())
-      let instance = SwiftNotificationPermisionsPlugin()
+      let instance = SwiftNotificationPermissionsPlugin()
       registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

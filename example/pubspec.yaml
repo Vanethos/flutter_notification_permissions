@@ -1,5 +1,5 @@
-name: notification_permisions_example
-description: Demonstrates how to use the notification_permisions plugin.
+name: notification_permissions_example
+description: Demonstrates how to use the notification_permissions plugin.
 publish_to: 'none'
 
 environment:
@@ -17,7 +17,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  notification_permisions:
+  notification_permissions:
     path: ../
 
 # For information on the generic Dart part of this file, see the

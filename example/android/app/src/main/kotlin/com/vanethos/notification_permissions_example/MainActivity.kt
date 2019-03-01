@@ -1,4 +1,4 @@
-package com.vanethos.notification_permisions_example
+package com.vanethos.notification_permissions_example
 
 import android.os.Bundle
 
