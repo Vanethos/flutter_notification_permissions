@@ -37,3 +37,5 @@ In iOS, if the permission is `unknown`, it will show an alert window asking the 
 
 Note: if the permission is `granted`, this method will not do anything.
 
+## Special Thanks
+Special thanks to [fedecastelli](https://github.com/fedecastelli) for helping me in the Swift Code!
