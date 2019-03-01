@@ -1,4 +1,4 @@
-package com.vanethos.notification_permisions
+package com.vanethos.notification_permissions
 
 import android.app.NotificationManager
 import android.content.Intent
@@ -18,7 +18,7 @@ import android.app.Activity
 
 
 
-class NotificationPermisionsPlugin(val registrar: Registrar): MethodCallHandler {
+class NotificationPermissionsPlugin(val registrar: Registrar): MethodCallHandler {
   val permissionGranted = "granted"
   val permissionDenied = "denied"
 
@@ -26,7 +26,7 @@ class NotificationPermisionsPlugin(val registrar: Registrar): MethodCallHandler 
     @JvmStatic
     fun registerWith(registrar: Registrar) {
       val channel = MethodChannel(registrar.messenger(), "notification_permissions")
-      channel.setMethodCallHandler(NotificationPermisionsPlugin(registrar))
+      channel.setMethodCallHandler(NotificationPermissionsPlugin(registrar))
     }
   }
 

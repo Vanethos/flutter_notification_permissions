@@ -1,6 +1,6 @@
-# notification_permisions_example
+# notification_permissions_example
 
-Demonstrates how to use the notification_permisions plugin.
+Demonstrates how to use the notification_permissions plugin.
 
 ## Getting Started
 

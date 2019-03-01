@@ -1,4 +1,4 @@
-group 'com.vanethos.notification_permisions'
+group 'com.vanethos.notification_permissions'
 version '1.0-SNAPSHOT'
 
 buildscript {

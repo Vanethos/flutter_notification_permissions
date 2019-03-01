@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:notification_permisions/notification_permisions.dart';
+import 'package:notification_permissions/notification_permissions.dart';
 
 void main() => runApp(MyApp());
 

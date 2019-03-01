@@ -2,7 +2,7 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 Pod::Spec.new do |s|
-  s.name             = 'notification_permisions'
+  s.name             = 'notification_permissions'
   s.version          = '0.0.1'
   s.summary          = 'A plugin to check and ask for notification permissions'
   s.description      = <<-DESC

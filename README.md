@@ -4,13 +4,13 @@ Package to check for and ask for Notification Permissions on iOS and Android.
 To use this package, you first must create an instance of `NotificationPermissions`:
 
 ```dart
-var permissionManager = new NotificationPermissions
-();
+var permissionManager = new NotificationPermissions();
 ```
 
 ## Checking Notification Permission Status
 ```dart
-Future<PermissionStatus> permissionStatus = permissionManager.getNotificationPermissionStatus()
+Future<PermissionStatus> permissionStatus =
+    permissionManager.getNotificationPermissionStatus()
 ```
 
 This method will return an enum with the following values:
@@ -37,3 +37,5 @@ In iOS, if the permission is `unknown`, it will show an alert window asking the 
 
 Note: if the permission is `granted`, this method will not do anything.
 
+## Special Thanks
+Special thanks to [fedecastelli](https://github.com/fedecastelli) for helping me in the Swift Code!
