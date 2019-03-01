@@ -8,12 +8,12 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import android.support.v4.app.NotificationManagerCompat
-import android.support.v4.content.ContextCompat.startActivity
+import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat.startActivity
 import android.net.Uri.fromParts
 import android.provider.Settings
 import android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-import android.support.v4.view.accessibility.AccessibilityEventCompat.setAction
+import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import android.app.Activity
 
 
