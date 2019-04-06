@@ -1,3 +1,6 @@
+## 0.2.2
+* Added support for latest kotlin version
+
 ## 0.2.1
 * Port iOS codebase to Swift 4.2
 
