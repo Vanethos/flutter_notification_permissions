@@ -1,3 +1,6 @@
+## 0.3.0
+* Replace Kotlin implementation with simple Java to ease future maintenance.
+
 ## 0.2.2
 * Added support for latest kotlin version
 
