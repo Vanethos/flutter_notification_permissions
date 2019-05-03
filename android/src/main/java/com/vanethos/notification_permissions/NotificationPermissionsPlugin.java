@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.core.app.NotificationManagerCompat;
 import io.flutter.plugin.common.MethodCall;
@@ -24,23 +25,24 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
   private final Context context;
 
   private NotificationPermissionsPlugin(Registrar registrar) {
-    this.context = registrar.context();
+    this.context = registrar.activity();
   }
 
-  @Override
+
+
+    @Override
   public void onMethodCall(MethodCall call, MethodChannel.Result result) {
     if ("getNotificationPermissionStatus".equalsIgnoreCase(call.method)) {
       result.success(getNotificationPermissionStatus());
     } else if ("requestNotificationPermissions".equalsIgnoreCase(call.method)) {
       if (PERMISSION_DENIED.equalsIgnoreCase(getNotificationPermissionStatus())) {
         if (context instanceof Activity) {
-          final Activity activity = (Activity) this.context;
-          final Intent intent = new Intent(Settings.ACTION_APPLICATION_SETTINGS);
-          final Uri uri = Uri.fromParts("package", activity.getPackageName(), null);
+          final Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+          final Uri uri = Uri.fromParts("package", context.getPackageName(), null);
 
           intent.setData(uri);
 
-          activity.startActivity(intent);
+          context.startActivity(intent);
         } else {
           result.error(call.method, "context is not instance of Activity", null);
         }
