@@ -37,5 +37,16 @@ In iOS, if the permission is `unknown`, it will show an alert window asking the 
 
 Note: if the permission is `granted`, this method will not do anything.
 
+## iOS Error: Swift.h not found
+
+If your project is in Objective-C, you will have to do the changes referenced in [this SO post](https://stackoverflow.com/a/53453243/4499889) in order to solve the issue:
+
+```
+'notification_permissions/notification_permissions-Swift.h' file not found
+    #import <notification_permissions/notification_permissions-Swift.h>
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    1 error generated.
+```
+
 ## Special Thanks
 Special thanks to [fedecastelli](https://github.com/fedecastelli) for helping me in the Swift Code!
