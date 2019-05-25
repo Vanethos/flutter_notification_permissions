@@ -1,4 +1,7 @@
-## 0.3.0
+# 0.3.1
+* Changed the README to present the quick-fix for installing this plugin in a Objective-C Flutter Project
+
+# 0.3.0
 * Replace Kotlin implementation with simple Java to ease future maintenance.
 
 ## 0.2.2
