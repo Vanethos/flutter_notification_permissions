@@ -12,8 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-  NotificationPermissions permissionManager;
-
   Future<String> permissionStatusFuture;
 
   var permGranted = "granted";
@@ -24,7 +22,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   void initState() {
     super.initState();
     // set up the notification permissions class
-    permissionManager = NotificationPermissions();
     // set up the future to fetch the notification data
     permissionStatusFuture = getCheckNotificationPermStatus();
     // With this, we will be able to check if the permission is granted or not
@@ -45,7 +42,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   /// Checks the notification permission status
   Future<String> getCheckNotificationPermStatus() {
-    return permissionManager.getNotificationPermissionStatus().then((status) {
+    return NotificationPermissions.getNotificationPermissionStatus().then((status) {
       switch (status) {
         case PermissionStatus.denied:
           return permDenied;
@@ -99,9 +96,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                         child: Text("Ask for notification status".toUpperCase()),
                         onPressed: () {
                           // show the dialog/open settings screen
-                          permissionManager
+                          NotificationPermissions
                               .requestNotificationPermissions(
-                                  const IosNotificationSettings(
+                                  const NotificationSettingsIos(
                                       sound: true, badge: true, alert: true))
                               .then((_) {
                             // when finished, check the permission status
@@ -122,4 +119,5 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     );
   }
 }
+
 ```

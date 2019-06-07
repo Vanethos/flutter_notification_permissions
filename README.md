@@ -1,16 +1,10 @@
 # Flutter Notification Permissions
 Package to check for and ask for Notification Permissions on iOS and Android.
 
-To use this package, you first must create an instance of `NotificationPermissions`:
-
-```dart
-var permissionManager = new NotificationPermissions();
-```
-
 ## Checking Notification Permission Status
 ```dart
 Future<PermissionStatus> permissionStatus =
-    permissionManager.getNotificationPermissionStatus()
+    NotificationPermissions.getNotificationPermissionStatus();
 ```
 
 This method will return an enum with the following values:
@@ -28,7 +22,7 @@ In iOS, a permission is `unknown` when the user hasn’t accepted or refuse the 
 ## Requesting Notification Permissions
 If the `PermissionStatus` is `denied` or `unknown`, we can ask the user for the Permissions:
 ```dart
-Future<PermissionStatus> permissionStatus = permissionManager.getNotificationPermissionStatus()
+Future<PermissionStatus> permissionStatus = NotificationPermissions.getNotificationPermissionStatus();
 ```
 
 On Android, if the permission is `denied`, this method will open the app settings.

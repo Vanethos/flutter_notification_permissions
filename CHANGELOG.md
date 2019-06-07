@@ -1,3 +1,6 @@
+# 0.4.0 
+* **Breaking change** Changed implementation to use static methods. Changed `IosNotificationSettings` to `NotificationSettingsIos` to avoid conflict with Firebase
+
 # 0.3.1
 * Changed the README to present the quick-fix for installing this plugin in a Objective-C Flutter Project
 

@@ -5,17 +5,17 @@ import 'package:meta/meta.dart';
 
 class NotificationPermissions {
   static const MethodChannel _channel =
-      const MethodChannel('notification_permissions');
+  const MethodChannel('notification_permissions');
 
-  Future<void> requestNotificationPermissions(
-      [IosNotificationSettings iosSettings = const IosNotificationSettings()]) {
+  static Future<void> requestNotificationPermissions(
+      [NotificationSettingsIos iosSettings = const NotificationSettingsIos()]) {
     return _channel.invokeMethod(
         'requestNotificationPermissions', iosSettings.toMap());
   }
 
-  Future<PermissionStatus> getNotificationPermissionStatus() async {
+  static Future<PermissionStatus> getNotificationPermissionStatus() async {
     final String status =
-        await _channel.invokeMethod('getNotificationPermissionStatus');
+    await _channel.invokeMethod('getNotificationPermissionStatus');
     return _getPermissionStatus(status);
   }
 
@@ -23,7 +23,7 @@ class NotificationPermissions {
   ///
   /// Given a [String] status from the method channel, it returns a
   /// [PermissionStatus]
-  PermissionStatus _getPermissionStatus(String status) {
+  static PermissionStatus _getPermissionStatus(String status) {
     switch (status) {
       case "denied":
         return PermissionStatus.denied;
@@ -37,14 +37,14 @@ class NotificationPermissions {
 
 enum PermissionStatus { granted, unknown, denied }
 
-class IosNotificationSettings {
-  const IosNotificationSettings({
+class NotificationSettingsIos {
+  const NotificationSettingsIos({
     this.sound = true,
     this.alert = true,
     this.badge = true,
   });
 
-  IosNotificationSettings._fromMap(Map<String, bool> settings)
+  NotificationSettingsIos._fromMap(Map<String, bool> settings)
       : sound = settings['sound'],
         alert = settings['alert'],
         badge = settings['badge'];
