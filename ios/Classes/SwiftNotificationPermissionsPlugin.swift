@@ -20,7 +20,17 @@ public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
               if (status == self.permissionUnknown) {
 				  if #available(iOS 10.0, *) {
 					  let center = UNUserNotificationCenter.current()
-					  center.requestAuthorization(options: [.alert, .badge, .sound]) { (success, error) in
+					  var options = UNAuthorizationOptions()
+					  if(arguments["sound"] != nil){
+					  	options.insert(.sound)
+					  }
+					  if(arguments["alert"] != nil){
+						options.insert(.alert)
+					  }
+					  if(arguments["badge"] != nil){
+						options.insert(.badge)
+					  }
+					  center.requestAuthorization(options: options) { (success, error) in
 						  if error == nil {
 							  if success == true {
 								  result(self.permissionGranted)
