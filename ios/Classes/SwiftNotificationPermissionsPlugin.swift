@@ -21,14 +21,16 @@ public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
 				  if #available(iOS 10.0, *) {
 					  let center = UNUserNotificationCenter.current()
 					  var options = UNAuthorizationOptions()
-					  if(arguments["sound"] != nil){
-					  	options.insert(.sound)
-					  }
-					  if(arguments["alert"] != nil){
-						options.insert(.alert)
-					  }
-					  if(arguments["badge"] != nil){
-						options.insert(.badge)
+					  if let arguments = call.arguments as? Dictionary<String, Bool> {
+						  if(arguments["sound"] != nil){
+							options.insert(.sound)
+						  }
+						  if(arguments["alert"] != nil){
+							options.insert(.alert)
+						  }
+						  if(arguments["badge"] != nil){
+							options.insert(.badge)
+						  }
 					  }
 					  center.requestAuthorization(options: options) { (success, error) in
 						  if error == nil {
