@@ -18,24 +18,43 @@ public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
           getNotificationStatus(completion: { status in
               if (status == self.permissionUnknown) {
                   // If the permission status is unknown, the user hasn't denied it
-                  var notificationTypes = UIUserNotificationType(rawValue: 0)
                   if let arguments = call.arguments as? Dictionary<String, Bool> {
-                      if arguments["sound"] != nil {
-                          notificationTypes.insert(UIUserNotificationType.sound)
-                      }
-                      if arguments["alert"] != nil  {
-                          notificationTypes.insert(UIUserNotificationType.alert)
-                      }
-                      if arguments["badge"] != nil  {
-                          notificationTypes.insert(UIUserNotificationType.badge)
-                      }
-                      var settings: UIUserNotificationSettings? = nil
+                      if #available(iOS 10.0, *) {
+                          var options = UNAuthorizationOptions()
+                          if arguments["sound"] != nil {
+                              options.insert(.sound)
+                          }
+                          if arguments["alert"] != nil  {
+                              options.insert(.alert)
+                          }
+                          if arguments["badge"] != nil  {
+                              options.insert(.badge)
+                          }
 
-                      settings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
+                          let center = UNUserNotificationCenter.current()
+                          center.requestAuthorization(options: options) { (_/*granted*/, _/*error*/) in
+                              // ignoring granted and error parameter
+                              result(nil)
+                          }
+                      } else {
+                          var notificationTypes = UIUserNotificationType(rawValue: 0)
+                          if arguments["sound"] != nil {
+                              notificationTypes.insert(UIUserNotificationType.sound)
+                          }
+                          if arguments["alert"] != nil  {
+                              notificationTypes.insert(UIUserNotificationType.alert)
+                          }
+                          if arguments["badge"] != nil  {
+                              notificationTypes.insert(UIUserNotificationType.badge)
+                          }
 
-                      if let settings = settings {
+                          let settings = UIUserNotificationSettings(types: notificationTypes, categories: nil)
                           UIApplication.shared.registerUserNotificationSettings(settings)
+
+                          result(nil)
                       }
+                  } else {
+                      result(nil)
                   }
               } else if (status == self.permissionDenied) {
                   // The user has denied the permission he must go to the settings screen
@@ -48,10 +67,11 @@ public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
                           }
                       }
                   }
+                  result(nil)
+              } else {
+                  result(nil)
               }
-              result(nil)
           })
-          result(nil)
       } else if (call.method == "getNotificationPermissionStatus") {
           getNotificationStatus(completion: { status in
               result(status)
