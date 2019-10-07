@@ -41,7 +41,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   /// Checks the notification permission status
   Future<String> getCheckNotificationPermStatus() {
-    return NotificationPermissions.getNotificationPermissionStatus().then((status) {
+    return NotificationPermissions.getNotificationPermissionStatus()
+        .then((status) {
       switch (status) {
         case PermissionStatus.denied:
           return permDenied;
@@ -49,6 +50,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           return permGranted;
         case PermissionStatus.unknown:
           return permUnknown;
+        default:
+          return null;
       }
     });
   }
@@ -92,13 +95,17 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                       ),
                       FlatButton(
                         color: Colors.amber,
-                        child: Text("Ask for notification status".toUpperCase()),
+                        child:
+                            Text("Ask for notification status".toUpperCase()),
                         onPressed: () {
                           // show the dialog/open settings screen
                           NotificationPermissions
-                              .requestNotificationPermissions(
-                                  const NotificationSettingsIos(
-                                      sound: true, badge: true, alert: true))
+                                  .requestNotificationPermissions(
+                                      iosSettings:
+                                          const NotificationSettingsIos(
+                                              sound: true,
+                                              badge: true,
+                                              alert: true))
                               .then((_) {
                             // when finished, check the permission status
                             setState(() {
