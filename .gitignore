@@ -65,3 +65,4 @@ build/
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 
+example/ios/Flutter/flutter_export_environment.sh

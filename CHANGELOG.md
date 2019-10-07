@@ -1,3 +1,9 @@
+# 0.4.3 
+* Added option to open settings or not in iOS when permition is denied [pawlowskim]
+* Adding possibility for iOS 10.0 to wait for call requestNotificationPermissions (iOS permission dialog) [kuzmisin]
+* Fix missing result() call for Android when PERMISSION_DENIED [kuzmisin]
+* Fixed warnings on XCode [ened]
+
 # 0.4.0 
 * **Breaking change** Changed implementation to use static methods. Changed `IosNotificationSettings` to `NotificationSettingsIos` to avoid conflict with Firebase
 

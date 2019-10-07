@@ -35,7 +35,9 @@ matrix:
       before_install:
         - yes | sdkmanager "platforms;android-28"
       script:
+        - cd example
         - ./flutter/bin/flutter -v build apk
+        - cd ..
         - flutter/bin/flutter test test
 
     - os: osx
@@ -57,7 +59,9 @@ matrix:
         #- pod install
         #- pod update
         #- cd ..
+        - cd example
         - flutter/bin/flutter build ios --debug --no-codesign
+        - cd ..
         - flutter/bin/flutter test test
 
 cache:
