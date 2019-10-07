@@ -28,21 +28,21 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
     this.context = registrar.activity();
   }
 
-
-
-    @Override
+  @Override
   public void onMethodCall(MethodCall call, MethodChannel.Result result) {
     if ("getNotificationPermissionStatus".equalsIgnoreCase(call.method)) {
       result.success(getNotificationPermissionStatus());
     } else if ("requestNotificationPermissions".equalsIgnoreCase(call.method)) {
       if (PERMISSION_DENIED.equalsIgnoreCase(getNotificationPermissionStatus())) {
         if (context instanceof Activity) {
-          final Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
           final Uri uri = Uri.fromParts("package", context.getPackageName(), null);
 
+          final Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
           intent.setData(uri);
 
           context.startActivity(intent);
+
+          result.success(null);
         } else {
           result.error(call.method, "context is not instance of Activity", null);
         }

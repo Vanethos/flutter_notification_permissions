@@ -87,6 +87,9 @@ public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
                           }
                       }
                   }
+                  result(nil)
+              } else {
+                  result(nil)
               }
           })
       } else if (call.method == "getNotificationPermissionStatus") {
