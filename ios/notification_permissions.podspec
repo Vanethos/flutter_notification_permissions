@@ -3,7 +3,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'notification_permissions'
-  s.version          = '0.0.1'
+  s.version          = '0.4.4'
   s.summary          = 'A plugin to check and ask for notification permissions'
   s.description      = <<-DESC
 A plugin to check and ask for notification permissions

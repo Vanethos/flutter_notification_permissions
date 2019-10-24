@@ -1,3 +1,8 @@
+# 0.4.4
+* Corrected the path to the license file in .podspec
+* Define CLANG module, so that the plugin can be used statically
+* Ensure correct version is listed in .podspec
+
 # 0.4.3 
 * Added option to open settings or not in iOS when permition is denied [pawlowskim]
 * Adding possibility for iOS 10.0 to wait for call requestNotificationPermissions (iOS permission dialog) [kuzmisin]
