@@ -17,6 +17,8 @@ A plugin to check and ask for notification permissions
   s.dependency 'Flutter'
   s.swift_version    = '5.0'
 
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
+
   s.ios.deployment_target = '8.0'
 end
 
