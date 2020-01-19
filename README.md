@@ -22,14 +22,14 @@ In iOS, a permission is `unknown` when the user hasn’t accepted or refuse the 
 ## Requesting Notification Permissions
 If the `PermissionStatus` is `denied` or `unknown`, we can ask the user for the Permissions:
 ```dart
-Future<PermissionStatus> permissionStatus = NotificationPermissions.getNotificationPermissionStatus({NotificationSettingsIos iosSettings, bool openSettings});
+Future<PermissionStatus> permissionStatus = NotificationPermissions.requestNotificationPermissions({NotificationSettingsIos iosSettings, bool openSettings});
 ```
 
 On Android, if the permission is `denied`, this method will open the app settings.
 
 In iOS, if the permission is `unknown`, it will show an alert window asking the user for the permission. On the other hand, if the permission is `denied` it has the same behaviour as Android, opening the app settings.
 Also in iOS if you set `openSettings` to false settings window won't be opened. You will get `denied` status. 
-`NotificationPermissions.getNotificationPermissionStatus` returns status after user select answer from native permission popup.
+`NotificationPermissions.requestNotificationPermissions` returns status after user select answer from native permission popup.
 
 Note: if the permission is `granted`, this method will not do anything.
 
@@ -42,6 +42,13 @@ If your project is in Objective-C, you will have to do the changes referenced in
     #import <notification_permissions/notification_permissions-Swift.h>
             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     1 error generated.
+```
+
+Add `use_frameworks!` in target Runner in your `(YOUR_PROJECT)/ios/Podfile`
+
+```
+target 'Runner' do
+  use_frameworks! # Add here
 ```
 
 ## Special Thanks
