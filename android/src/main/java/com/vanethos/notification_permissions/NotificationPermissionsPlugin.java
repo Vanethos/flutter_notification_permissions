@@ -47,7 +47,7 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
           result.error(call.method, "context is not instance of Activity", null);
         }
       } else {
-        result.success(null);
+        result.success(PERMISSION_GRANTED);
       }
     } else {
       result.notImplemented();
