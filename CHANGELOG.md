@@ -1,3 +1,6 @@
+# 0.4.5
+* Fixes Android giving unknown permission error [Zazo032]
+
 # 0.4.4
 * Corrected the path to the license file in .podspec
 * Define CLANG module, so that the plugin can be used statically
