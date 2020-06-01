@@ -36,7 +36,7 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
     } else if ("requestNotificationPermissions".equalsIgnoreCase(call.method)) {
       if (PERMISSION_DENIED.equalsIgnoreCase(getNotificationPermissionStatus())) {
         if (context instanceof Activity) {
-          // https://stackoverflow.com/a/45192258/6134716
+          // https://stackoverflow.com/a/45192258
           final Intent intent = new Intent();
 
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
