@@ -1,3 +1,6 @@
+# 0.4.6
+* Fixes open android Settings via [#25](https://github.com/Vanethos/flutter_notification_permissions/pull/25) , [britannio]
+
 # 0.4.5
 * Fixes Android giving unknown permission error [Zazo032]
 
