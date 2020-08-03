@@ -12,7 +12,8 @@ class NotificationPermissions {
       bool openSettings = true}) async {
     final map = iosSettings.toMap();
     map["openSettings"] = openSettings;
-    String status = await _channel.invokeMethod('requestNotificationPermissions', map);
+    String status =
+        await _channel.invokeMethod('requestNotificationPermissions', map);
     return _getPermissionStatus(status);
   }
 
@@ -32,13 +33,15 @@ class NotificationPermissions {
         return PermissionStatus.denied;
       case "granted":
         return PermissionStatus.granted;
+      case "provisional":
+        return PermissionStatus.provisional;
       default:
         return PermissionStatus.unknown;
     }
   }
 }
 
-enum PermissionStatus { granted, unknown, denied }
+enum PermissionStatus { granted, unknown, denied, provisional }
 
 class NotificationSettingsIos {
   const NotificationSettingsIos({
