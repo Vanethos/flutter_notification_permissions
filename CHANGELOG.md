@@ -1,3 +1,7 @@
+# 0.4.7
+
+* Adds iOS Provisional Status [#28](https://github.com/Vanethos/flutter_notification_permissions/pull/28), [DuncanKelbie]
+
 # 0.4.6
 * Fixes open android Settings via [#25](https://github.com/Vanethos/flutter_notification_permissions/pull/25) , [britannio]
 
