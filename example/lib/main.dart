@@ -16,6 +16,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   var permGranted = "granted";
   var permDenied = "denied";
   var permUnknown = "unknown";
+  var permProvisional = "provisional";
 
   @override
   void initState() {
@@ -50,6 +51,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           return permGranted;
         case PermissionStatus.unknown:
           return permUnknown;
+        case PermissionStatus.provisional:
+          return permProvisional;
         default:
           return null;
       }

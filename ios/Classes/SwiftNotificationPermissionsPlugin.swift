@@ -18,7 +18,7 @@ public class SwiftNotificationPermissionsPlugin: NSObject, FlutterPlugin {
       if (call.method == "requestNotificationPermissions") {
           // check if we can ask for permissions
           getNotificationStatus(completion: { status in
-              if (status == self.permissionUnknown) {
+              if (status == self.permissionUnknown || status == self.permissionProvisional) {
 				  if #available(iOS 10.0, *) {
 					  let center = UNUserNotificationCenter.current()
 					  var options = UNAuthorizationOptions()
