@@ -11,13 +11,14 @@ This method will return an enum with the following values:
 
 ```dart
 enum PermissionStatus {
+  provisional, // iOS Only
 	granted,
 	unknown,
 	denied
 }
 ```
 
-In iOS, a permission is `unknown` when the user hasn’t accepted or refuse the notification permissions. In Android this state will never occur, since the permission will be `granted` by default and it will be `denied` if the user goes to the app settings and turns off notifications for the app.
+In iOS, a permission is `unknown` when the user hasn’t accepted or refuse the notification permissions. In Android this state will never occur, since the permission will be `granted` by default and it will be `denied` if the user goes to the app settings and turns off notifications for the app. The `provisional` status will also offer the same behavior.
 
 ## Requesting Notification Permissions
 If the `PermissionStatus` is `denied` or `unknown`, we can ask the user for the Permissions:
@@ -27,7 +28,7 @@ Future<PermissionStatus> permissionStatus = NotificationPermissions.requestNotif
 
 On Android, if the permission is `denied`, this method will open the app settings.
 
-In iOS, if the permission is `unknown`, it will show an alert window asking the user for the permission. On the other hand, if the permission is `denied` it has the same behaviour as Android, opening the app settings.
+In iOS, if the permission is `unknown` or `provisional`, it will show an alert window asking the user for the permission. On the other hand, if the permission is `denied` it has the same behaviour as Android, opening the app settings.
 Also in iOS if you set `openSettings` to false settings window won't be opened. You will get `denied` status. 
 `NotificationPermissions.requestNotificationPermissions` returns status after user select answer from native permission popup.
 

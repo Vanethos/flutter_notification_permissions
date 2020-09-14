@@ -1,3 +1,8 @@
+# 0.4.8
+
+* Fixes iOS Privisional Status not opening [#30](https://github.com/Vanethos/flutter_notification_permissions/pull/30), 
+[DuncanKelbie]
+
 # 0.4.7
 
 * Adds iOS Provisional Status [#28](https://github.com/Vanethos/flutter_notification_permissions/pull/28), [DuncanKelbie]
