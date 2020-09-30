@@ -24,11 +24,9 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
   private static final String PERMISSION_DENIED = "denied";
 
   private final Context context;
-  private final Activity activity;
 
   private NotificationPermissionsPlugin(Registrar registrar) {
-    this.context = registrar.context();
-    this.activity = registrar.activity();
+    this.context = registrar.activeContext();
   }
 
   @Override
@@ -37,8 +35,8 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
       result.success(getNotificationPermissionStatus());
     } else if ("requestNotificationPermissions".equalsIgnoreCase(call.method)) {
       if (PERMISSION_DENIED.equalsIgnoreCase(getNotificationPermissionStatus())) {
-        if (activity == null) {
-          result.error(call.method, "activity is null", null);
+        if (context == null) {
+          result.error(call.method, "context is null", null);
           return;
         }
 
@@ -48,18 +46,18 @@ public class NotificationPermissionsPlugin implements MethodChannel.MethodCallHa
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
           // ACTION_APP_NOTIFICATION_SETTINGS was introduced in API level 26 aka Android O
           intent.setAction(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-          intent.putExtra(Settings.EXTRA_APP_PACKAGE, activity.getPackageName());
+          intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
           intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
-          intent.putExtra("app_package", activity.getPackageName());
-          intent.putExtra("app_uid", activity.getApplicationInfo().uid);
+          intent.putExtra("app_package", context.getPackageName());
+          intent.putExtra("app_uid", context.getApplicationInfo().uid);
         } else {
           intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
           intent.addCategory(Intent.CATEGORY_DEFAULT);
-          intent.setData(Uri.parse("package:" + activity.getPackageName()));
+          intent.setData(Uri.parse("package:" + context.getPackageName()));
         }
 
-        activity.startActivity(intent);
+        context.startActivity(intent);
 
         result.success(PERMISSION_DENIED);
       } else {
