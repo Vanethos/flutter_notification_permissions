@@ -1,3 +1,7 @@
+# 0.5.0
+
+* Adds null safety [anoop4real]
+
 # 0.4.8
 
 * Fixes iOS Privisional Status not opening [#30](https://github.com/Vanethos/flutter_notification_permissions/pull/30), 
