@@ -70,59 +70,60 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             child: Container(
           margin: EdgeInsets.all(20),
           child: FutureBuilder(
-              future: permissionStatusFuture,
-              builder: (context, snapshot) {
-                // if we are waiting for data, show a progress indicator
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return CircularProgressIndicator();
-                }
-                if (snapshot.hasData) {
-                  var textWidget = Text(
-                    "The permission status is ${snapshot.data}",
-                    style: TextStyle(fontSize: 20),
-                    softWrap: true,
-                    textAlign: TextAlign.center,
-                  );
-                  // The permission is granted, then just show the text
-                  if (snapshot.data == permGranted) {
-                    return textWidget;
-                  }
+            future: permissionStatusFuture,
+            builder: (context, snapshot) {
+              // if we are waiting for data, show a progress indicator
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              }
+              
+              if (snapshot.hasError) {
+                return Text('error while retrieving status: ${snapshot.error}');
+              }
 
-                  // else, we'll show a button to ask for the permissions
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      textWidget,
-                      SizedBox(
-                        height: 20,
-                      ),
-                      FlatButton(
-                        color: Colors.amber,
-                        child:
-                            Text("Ask for notification status".toUpperCase()),
-                        onPressed: () {
-                          // show the dialog/open settings screen
-                          NotificationPermissions
-                                  .requestNotificationPermissions(
-                                      iosSettings:
-                                          const NotificationSettingsIos(
-                                              sound: true,
-                                              badge: true,
-                                              alert: true))
-                              .then((_) {
-                            // when finished, check the permission status
-                            setState(() {
-                              permissionStatusFuture =
-                                  getCheckNotificationPermStatus();
-                            });
-                          });
-                        },
-                      )
-                    ],
-                  );
+              if (snapshot.hasData) {
+                var textWidget = Text(
+                  "The permission status is ${snapshot.data}",
+                  style: TextStyle(fontSize: 20),
+                  softWrap: true,
+                  textAlign: TextAlign.center,
+                );
+                // The permission is granted, then just show the text
+                if (snapshot.data == permGranted) {
+                  return textWidget;
                 }
-                return Text("No permission status yet");
-              }),
+
+                // else, we'll show a button to ask for the permissions
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    textWidget,
+                    SizedBox(
+                      height: 20,
+                    ),
+                    FlatButton(
+                      color: Colors.amber,
+                      child: Text("Ask for notification status".toUpperCase()),
+                      onPressed: () {
+                        // show the dialog/open settings screen
+                        NotificationPermissions.requestNotificationPermissions(
+                                iosSettings: const NotificationSettingsIos(
+                                    sound: true, badge: true, alert: true))
+                            .then((_) {
+                          // when finished, check the permission status
+                          setState(() {
+                            permissionStatusFuture =
+                                getCheckNotificationPermStatus();
+                          });
+                        });
+                      },
+                    )
+                  ],
+                );
+              }
+              return Text("No permission status yet");
+            },
+          ),
         )),
       ),
     );
