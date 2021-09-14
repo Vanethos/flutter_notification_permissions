@@ -1,3 +1,7 @@
+# next
+
+* Supports Android V2 embedding
+
 # 0.5.0
 
 * Adds null safety [anoop4real]
