@@ -76,7 +76,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               if (snapshot.connectionState == ConnectionState.waiting) {
                 return CircularProgressIndicator();
               }
-              
+
               if (snapshot.hasError) {
                 return Text('error while retrieving status: ${snapshot.error}');
               }

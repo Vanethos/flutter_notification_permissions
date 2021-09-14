@@ -1,6 +1,7 @@
 name: notification_permissions_example
 description: Demonstrates how to use the notification_permissions plugin.
 publish_to: 'none'
+version: 1.0.0+1
 
 environment:
   sdk: ">=2.1.12 <3.0.0"

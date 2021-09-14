@@ -1,6 +1,6 @@
-# next
+# 0.6.0
 
-* Supports Android V2 embedding
+* Supports Android V2 embedding [ened]
 
 # 0.5.0
 
