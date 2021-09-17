@@ -9,10 +9,10 @@ import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodChannel;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 public class NotificationPermissionsPlugin implements FlutterPlugin, ActivityAware {
-  public static void registerWith(Registrar registrar) {
+  @SuppressWarnings("deprecation")
+  public static void registerWith(io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
     final NotificationPermissionsPlugin plugin = new NotificationPermissionsPlugin();
     plugin.onAttachedToEngine(registrar.context(), registrar.messenger());
 
