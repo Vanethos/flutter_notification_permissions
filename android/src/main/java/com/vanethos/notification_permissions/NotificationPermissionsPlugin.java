@@ -21,9 +21,11 @@ public class NotificationPermissionsPlugin implements FlutterPlugin, ActivityAwa
     }
   }
 
-  @Nullable private MethodChannel channel;
+  @Nullable
+  private MethodChannel channel;
 
-  @Nullable private MethodCallHandlerImpl methodCallHandler;
+  @Nullable
+  private MethodCallHandlerImpl methodCallHandler;
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
