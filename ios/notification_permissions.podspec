@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
 A plugin to check and ask for notification permissions
                        DESC
   s.homepage         = 'http://example.com'
-  s.license          = { :file => '../LICENSE.md' }
+  s.license          = { :type => 'MIT' }
   s.author           = { 'Your Company' => 'email@example.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
