@@ -1,3 +1,7 @@
+# 0.6.1
+
+* Suppresses Android deprecation warning [nohli]
+
 # 0.6.0
 
 * Supports Android V2 embedding [ened]
