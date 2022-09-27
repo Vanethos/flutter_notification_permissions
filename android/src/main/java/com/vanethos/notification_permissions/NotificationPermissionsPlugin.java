@@ -2,8 +2,10 @@ package com.vanethos.notification_permissions;
 
 import android.app.Activity;
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
@@ -27,6 +29,9 @@ public class NotificationPermissionsPlugin implements FlutterPlugin, ActivityAwa
   @Nullable
   private MethodCallHandlerImpl methodCallHandler;
 
+  @Nullable
+  ActivityPluginBinding activityPluginBinding;
+
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
     onAttachedToEngine(binding.getApplicationContext(), binding.getBinaryMessenger());
@@ -48,7 +53,9 @@ public class NotificationPermissionsPlugin implements FlutterPlugin, ActivityAwa
 
   @Override
   public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
+    activityPluginBinding = binding;
     onActivityChanged(binding.getActivity());
+    startListeningForPermissionResult();
   }
 
   @Override
@@ -64,11 +71,24 @@ public class NotificationPermissionsPlugin implements FlutterPlugin, ActivityAwa
   @Override
   public void onDetachedFromActivity() {
     onActivityChanged(null);
+    stopListeningForPermissionResult();
   }
 
   private void onActivityChanged(@Nullable Activity activity) {
     if (methodCallHandler != null) {
       methodCallHandler.setActivity(activity);
+    }
+  }
+
+  private void startListeningForPermissionResult() {
+    if (this.activityPluginBinding != null && methodCallHandler != null) {
+      activityPluginBinding.addRequestPermissionsResultListener(methodCallHandler);
+    }
+  }
+
+  private void stopListeningForPermissionResult() {
+    if (this.activityPluginBinding != null && methodCallHandler != null) {
+      activityPluginBinding.removeRequestPermissionsResultListener(methodCallHandler);
     }
   }
 }

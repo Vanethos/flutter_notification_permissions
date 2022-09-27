@@ -26,7 +26,11 @@ If the `PermissionStatus` is `denied` or `unknown`, we can ask the user for the 
 Future<PermissionStatus> permissionStatus = NotificationPermissions.requestNotificationPermissions({NotificationSettingsIos iosSettings, bool openSettings});
 ```
 
-On Android, if the permission is `denied`, this method will open the app settings.
+On Android 12 and lower, if the permission is `denied`, this method will open the app settings.
+On Android 13 and higher system dialog asking for permission will be displayed. To be able to request permission on Android 13+ add the following permission to `AndroidManifest.xml`:
+```xml
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+```
 
 In iOS, if the permission is `unknown` or `provisional`, it will show an alert window asking the user for the permission. On the other hand, if the permission is `denied` it has the same behaviour as Android, opening the app settings.
 Also in iOS if you set `openSettings` to false settings window won't be opened. You will get `denied` status. 
